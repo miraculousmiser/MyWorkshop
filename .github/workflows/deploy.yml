@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -20,6 +21,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    env:
+      PAGES_ARTIFACT: github-pages-${{ github.run_attempt }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -43,10 +46,35 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload static site
+        id: upload
         uses: actions/upload-pages-artifact@v3
         with:
+          name: ${{ env.PAGES_ARTIFACT }}
           path: ./dist
+
+      - name: Wait for the Pages artifact to become visible
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact_id }}
+        run: |
+          if [[ -z "$ARTIFACT_ID" ]]; then
+            echo "::error::GitHub Pages upload did not return an artifact ID."
+            exit 1
+          fi
+          # Upload can finish before the run's artifact list reflects the new file.
+          for attempt in {1..20}; do
+            if visible_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts?name=$PAGES_ARTIFACT" \
+                --jq '.artifacts[] | select(.expired == false) | .id') && [[ "$visible_id" == "$ARTIFACT_ID" ]]; then
+              echo "Pages artifact $ARTIFACT_ID is ready."
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::GitHub did not list Pages artifact $ARTIFACT_ID after one minute."
+          exit 1
 
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.PAGES_ARTIFACT }}
