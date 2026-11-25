@@ -1,7 +1,6 @@
-import type { RoomId } from '../content'
-import { rooms } from '../content'
+import { rooms, type GamePath, type RoomId } from '../content'
 
-export type Route = '/' | `/${RoomId}`
+export type Route = '/' | `/${RoomId}` | GamePath
 
 type SiteHeaderProps = {
   route: Route
@@ -23,13 +22,14 @@ export function SiteHeader({ route }: SiteHeaderProps) {
           Home
         </a>
         {rooms.map((room) => {
-          const roomRoute = `/${room.id}` as Route
+          const roomRoute = `/${room.id}`
+          const isCurrentRoom = route === roomRoute || route.startsWith(`${roomRoute}/`)
           return (
             <a
               key={room.id}
-              className={route === roomRoute ? 'is-active' : ''}
+              className={isCurrentRoom ? 'is-active' : ''}
               href={`#/${room.id}`}
-              aria-current={route === roomRoute ? 'page' : undefined}
+              aria-current={route === roomRoute ? 'page' : isCurrentRoom ? 'location' : undefined}
             >
               {room.shortName}
             </a>

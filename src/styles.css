@@ -269,6 +269,7 @@ a,
   font-weight: 650;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  text-decoration: none;
   transition: color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 

@@ -8,6 +8,8 @@ type RoomPageProps = {
 export function RoomPage({ room }: RoomPageProps) {
   const roomIndex = rooms.findIndex((item) => item.id === room.id)
   const nextRoom = rooms[(roomIndex + 1) % rooms.length]
+  const hasPlayableEntry = room.entries.some((entry) => entry.playPath)
+  const allPlayable = hasPlayableEntry && room.entries.every((entry) => entry.playPath)
 
   return (
     <main id="main-content" className={`page room-page room-page--${room.id}`} tabIndex={-1}>
@@ -28,16 +30,22 @@ export function RoomPage({ room }: RoomPageProps) {
         <div className="section-heading section-heading--compact">
           <div>
             <p className="eyebrow">On the worktable</p>
-            <h2 id="collection-title">Three things taking shape.</h2>
+            <h2 id="collection-title">{allPlayable ? 'Play in the Arcade.' : hasPlayableEntry ? 'Games and sketches.' : 'Three things taking shape.'}</h2>
           </div>
-          <p>Sample content for layout and direction; none of these entries is published yet.</p>
+          <p>
+            {allPlayable
+              ? 'Try a landscape toy, a gravity puzzle, or a timed delivery.'
+              : hasPlayableEntry
+              ? 'Play a game or see what else is taking shape in the Arcade.'
+              : 'Sample content for layout and direction; none of these entries is published yet.'}
+          </p>
         </div>
 
         <div className="entry-grid">
           {room.entries.map((entry, index) => (
             <article className="entry-card" key={entry.title}>
               <div className="entry-card__meta">
-                <span>Placeholder</span>
+                <span>{entry.playPath ? 'Playable' : 'Placeholder'}</span>
                 <small>{String(index + 1).padStart(2, '0')}</small>
               </div>
               <div className="entry-card__copy">
@@ -46,7 +54,9 @@ export function RoomPage({ room }: RoomPageProps) {
                 <div>{entry.description}</div>
               </div>
               <footer>
-                <span>{entry.note}</span>
+                {entry.playPath
+                  ? <a className="text-button" href={`#${entry.playPath}`}>Play {entry.title}</a>
+                  : <span>{entry.note}</span>}
               </footer>
             </article>
           ))}

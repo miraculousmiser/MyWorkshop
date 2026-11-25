@@ -10,7 +10,7 @@ Version 0.1 establishes five pages:
 - Listening Room
 - Laboratory
 
-All entries currently shown in the four rooms are visibly marked as placeholder content.
+The Arcade includes Pocket Weather, a landscape toy, Orbital Orchard, a gravity puzzle, and Ledger Runner, a timed delivery game. Sample entries in the other rooms are labeled as placeholders.
 
 ## Technology
 
@@ -55,7 +55,7 @@ The main reusable pieces are:
 - `src/pages/RoomPage.tsx` — one modular template used by all four rooms
 - `src/styles.css` — the complete visual system and responsive rules
 
-When real content replaces a sample, remove or adapt the `Placeholder` label in `RoomPage.tsx`.
+For a playable entry, add its page route to `App.tsx` and set the entry's `playPath` in `src/content.ts`. The room card will show a play link in place of its placeholder note.
 
 ## Publish later with GitHub Pages
 
@@ -76,4 +76,4 @@ The visual language is intentionally restrained: warm paper, dark ink, editorial
 
 ## Status
 
-Version 0.1 is a foundation rather than a finished collection. The most natural next step is to replace one placeholder with one small, complete thing.
+Open the Arcade to play **Pocket Weather**, **Orbital Orchard**, or **Ledger Runner** locally.

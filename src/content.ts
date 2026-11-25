@@ -1,11 +1,17 @@
 export type RoomId = 'arcade' | 'library' | 'listening' | 'laboratory'
 
+export const pocketWeatherPath = '/arcade/pocket-weather'
+export const orbitalOrchardPath = '/arcade/orbital-orchard'
+export const ledgerRunnerPath = '/arcade/ledger-runner'
+export type GamePath = typeof pocketWeatherPath | typeof orbitalOrchardPath | typeof ledgerRunnerPath
+
 export type Entry = {
   title: string
   kind: string
   year: string
   description: string
   note: string
+  playPath?: GamePath
 }
 
 export type Room = {
@@ -34,24 +40,27 @@ export const rooms: Room[] = [
     entries: [
       {
         title: 'Orbital Orchard',
-        kind: 'Game sketch',
-        year: 'Soon',
-        description: 'Guide drifting seeds into miniature planetary gardens without disturbing their delicate orbits.',
+        kind: 'Orbital puzzle',
+        year: '2026',
+        description: 'Bend a seed’s flight around a gravity well and plant three miniature planetary gardens.',
         note: 'A quiet score-chasing game about timing and gentle interference.',
+        playPath: orbitalOrchardPath,
       },
       {
         title: 'Pocket Weather',
         kind: 'Five-minute toy',
-        year: 'Soon',
-        description: 'Arrange clouds, wind, and light to make a tiny afternoon feel exactly right.',
-        note: 'A tactile weather box with no win state—only changing moods.',
+        year: '2026',
+        description: 'Change the clouds, wind, and light over a little mountain lake.',
+        note: 'Take a moment by the water.',
+        playPath: pocketWeatherPath,
       },
       {
         title: 'Ledger Runner',
         kind: 'Arcade satire',
-        year: 'Soon',
-        description: 'Balance speed, risk, and reserves while a very small economy gets increasingly strange.',
+        year: '2026',
+        description: 'Rush invoices, cruise through audits, and get the ledger to the closing desk before time or cash runs out.',
         note: 'An economic fable disguised as a brisk one-button game.',
+        playPath: ledgerRunnerPath,
       },
     ],
   },

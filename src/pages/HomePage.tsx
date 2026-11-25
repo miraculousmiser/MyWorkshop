@@ -61,7 +61,11 @@ export function HomePage() {
                 <span>{room.summary}</span>
               </div>
               <div className="room-card__footer">
-                <small>{room.entries.length} sample entries</small>
+                <small>
+                  {room.entries.some((entry) => entry.playPath)
+                    ? `${room.entries.length} entries`
+                    : `${room.entries.length} sample entries`}
+                </small>
                 <b aria-hidden="true">↗</b>
               </div>
             </a>

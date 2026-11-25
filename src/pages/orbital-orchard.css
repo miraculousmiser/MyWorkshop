@@ -1,0 +1,235 @@
+.orchard-page {
+  padding: clamp(2rem, 4.5vw, 4rem) 0 clamp(3rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.orchard-header {
+  margin-bottom: clamp(1.35rem, 3vw, 2rem);
+}
+
+.orchard-header .breadcrumb {
+  margin-bottom: 1.15rem;
+  font-size: 0.75rem;
+}
+
+.orchard-header h1 {
+  margin: 0;
+  font: 500 clamp(2.75rem, 6.5vw, 5.9rem)/0.98 var(--serif);
+  letter-spacing: -0.055em;
+}
+
+.orchard-header > p:last-child {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font: 1.125rem/1.5 var(--serif);
+}
+
+.orchard-game {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 18.5rem);
+  border: 1px solid var(--line);
+  background: #101924;
+}
+
+.orchard-chart {
+  position: relative;
+  align-self: center;
+  min-width: 0;
+  isolation: isolate;
+  background: #101924;
+}
+
+.orchard-chart canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+}
+
+.orchard-chart__labels {
+  position: absolute;
+  inset: 0;
+  color: #f4ead9;
+  pointer-events: none;
+}
+
+.orchard-chart__labels span {
+  position: absolute;
+  transform: translateX(-50%);
+  padding: 0.05em 0.27em;
+  background: rgba(16, 25, 36, 0.78);
+  font: clamp(0.625rem, 1.25vw, 0.875rem)/1.2 var(--mono);
+}
+
+.orchard-controls {
+  padding: clamp(1rem, 2.4vw, 1.55rem);
+  border-left: 1px solid var(--line);
+  background: var(--paper-bright);
+}
+
+.orchard-controls h2 {
+  margin: 0;
+  font: 500 1.8rem/1.1 var(--serif);
+  letter-spacing: -0.035em;
+}
+
+.orchard-inventory {
+  margin: 0.45rem 0 1.3rem;
+  color: var(--forest);
+  font: 0.875rem/1.4 var(--mono);
+}
+
+.orchard-setting {
+  margin-bottom: 0.65rem;
+}
+
+.orchard-setting label {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.orchard-setting label span {
+  color: var(--forest);
+  font: 0.875rem/1.4 var(--mono);
+}
+
+.orchard-setting input {
+  display: block;
+  width: 100%;
+  height: 2rem;
+  margin: 0.1rem 0 0;
+  accent-color: var(--forest);
+  cursor: pointer;
+}
+
+.orchard-guide {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2rem;
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.orchard-guide input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--forest);
+}
+
+.orchard-forecast {
+  min-height: 2.5em;
+  margin: 0.35rem 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.orchard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.orchard-actions button {
+  min-height: 2.75rem;
+  padding: 0.52rem 0.8rem;
+  border: 1px solid var(--forest);
+  font-size: 0.875rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.orchard-launch {
+  color: var(--paper-bright);
+  background: var(--forest);
+}
+
+.orchard-restart {
+  color: var(--forest);
+  background: transparent;
+}
+
+.orchard-launch:hover:not([aria-disabled="true"]) {
+  background: #243c33;
+}
+
+.orchard-restart:hover {
+  background: var(--paper);
+}
+
+.orchard-launch[aria-disabled="true"],
+.orchard-controls input:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.orchard-result {
+  min-height: 2.9em;
+  margin: 0.95rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+  color: var(--forest);
+  font: 500 1rem/1.4 var(--serif);
+}
+
+.orchard-notes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.9rem 1.8rem;
+  margin-top: 1rem;
+}
+
+.orchard-gardens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.orchard-gardens li {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  font-size: 0.875rem;
+}
+
+.orchard-gardens span {
+  color: var(--muted);
+}
+
+.orchard-notes > p {
+  max-width: 27rem;
+  margin: 0;
+  color: var(--muted);
+  font: 1rem/1.5 var(--serif);
+}
+
+@media (max-width: 760px) {
+  .orchard-game {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .orchard-chart {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: min(100%, 25rem, 53svh);
+    justify-self: center;
+  }
+
+  .orchard-controls {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
