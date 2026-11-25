@@ -3,7 +3,20 @@ export type RoomId = 'arcade' | 'library' | 'listening' | 'laboratory'
 export const pocketWeatherPath = '/arcade/pocket-weather'
 export const orbitalOrchardPath = '/arcade/orbital-orchard'
 export const ledgerRunnerPath = '/arcade/ledger-runner'
-export type GamePath = typeof pocketWeatherPath | typeof orbitalOrchardPath | typeof ledgerRunnerPath
+export const nightTrainsPath = '/listening/night-trains'
+export const nightTrainsDescription = 'A sequence imagined for late work, long windows, and stations that arrive before their names do.'
+export const workingSlowlyPath = '/listening/three-songs-for-working-slowly'
+export const workingSlowlyTitle = 'Three Songs for Working Slowly'
+export const workingSlowlyDescription = 'Notes on patience, repetition, and music that makes concentration feel less mechanical.'
+// Keep the original link working after the tune's rename.
+export const lastLightPath = '/listening/tape-loop-at-dusk'
+export const lastLightTitle = 'Last Light on the Ridge'
+export const lastLightDescription = 'Slow bluegrass at 60 BPM. Soft plucks and firmer accents from Philharmonia mandolin recordings sit over fingerpicked guitar and upright bass.'
+export const summerPorchPath = '/listening/summer-porch-sessions'
+export const summerPorchTitle = 'Summer Porch Sessions'
+export const summerPorchDescription = 'A summer-night string jam with soft picking and room for the instruments to trade phrases.'
+export type EntryPath = typeof pocketWeatherPath | typeof orbitalOrchardPath | typeof ledgerRunnerPath
+  | typeof nightTrainsPath | typeof workingSlowlyPath | typeof lastLightPath | typeof summerPorchPath
 
 export type Entry = {
   title: string
@@ -11,7 +24,7 @@ export type Entry = {
   year: string
   description: string
   note: string
-  playPath?: GamePath
+  playPath?: EntryPath
 }
 
 export type Room = {
@@ -103,32 +116,43 @@ export const rooms: Room[] = [
     index: 'III',
     name: 'Listening Room',
     shortName: 'Listening',
-    eyebrow: 'Records, field notes & useful noise',
-    summary: 'Listening notes for albums, patient songs, field recordings, and music that changes a room.',
+    eyebrow: 'Instrumentals and listening notes',
+    summary: 'Original instrumentals for focused work and winding down.',
     introduction:
       'This is a place to write about listening without turning taste into a leaderboard. Expect small sequences, remembered sounds, and notes about when a piece of music becomes useful.',
-    promise: 'No autoplay and no embedded trackers—just listening notes and links added with care.',
+    promise: 'No autoplay and no embedded trackers—just original recordings and listening notes.',
     entries: [
       {
         title: 'Night Trains',
-        kind: 'Fictional sequence',
-        year: 'Side A',
-        description: 'A sequence imagined for late work, long windows, and stations that arrive before their names do.',
+        kind: 'Original instrumental',
+        year: '2026',
+        description: nightTrainsDescription,
         note: 'Low light, steady motion, one bright interruption near the end.',
+        playPath: nightTrainsPath,
       },
       {
-        title: 'Three Songs for Working Slowly',
-        kind: 'Listening notes',
-        year: 'List',
-        description: 'Notes on patience, repetition, and music that makes concentration feel less mechanical.',
+        title: workingSlowlyTitle,
+        kind: 'Original instrumental set',
+        year: '2026',
+        description: workingSlowlyDescription,
         note: 'A tiny playlist with room between the tracks.',
+        playPath: workingSlowlyPath,
       },
       {
-        title: 'Tape Loop at Dusk',
-        kind: 'Field study',
-        year: 'Study',
-        description: 'A fictional field-recording exercise built from porch fans, distant traffic, and evening insects.',
-        note: 'An experiment in hearing the rhythm inside an ordinary hour.',
+        title: lastLightTitle,
+        kind: 'Bluegrass instrumental',
+        year: '2026',
+        description: lastLightDescription,
+        note: 'An original tune with an unhurried pulse and space between phrases.',
+        playPath: lastLightPath,
+      },
+      {
+        title: summerPorchTitle,
+        kind: 'Bluegrass instrumental set',
+        year: '2026',
+        description: summerPorchDescription,
+        note: 'Two original pieces for working quietly or settling in for the evening.',
+        playPath: summerPorchPath,
       },
     ],
   },

@@ -1,6 +1,6 @@
-import { rooms, type GamePath, type RoomId } from '../content'
+import { rooms, type EntryPath, type RoomId } from '../content'
 
-export type Route = '/' | `/${RoomId}` | GamePath
+export type Route = '/' | `/${RoomId}` | EntryPath
 
 type SiteHeaderProps = {
   route: Route

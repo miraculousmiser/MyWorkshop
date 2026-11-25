@@ -10,7 +10,7 @@ Version 0.1 establishes five pages:
 - Listening Room
 - Laboratory
 
-The Arcade includes Pocket Weather, a landscape toy, Orbital Orchard, a gravity puzzle, and Ledger Runner, a timed delivery game. Sample entries in the other rooms are labeled as placeholders.
+The Arcade includes Pocket Weather, Orbital Orchard, and Ledger Runner. The Listening Room includes Night Trains, Three Songs for Working Slowly, Last Light on the Ridge, and Summer Porch Sessions. Sample entries are labeled as placeholders.
 
 ## Technology
 
@@ -56,6 +56,19 @@ The main reusable pieces are:
 - `src/styles.css` — the complete visual system and responsive rules
 
 For a playable entry, add its page route to `App.tsx` and set the entry's `playPath` in `src/content.ts`. The room card will show a play link in place of its placeholder note.
+
+The Listening Room groups tracks from all four recordings on one page. The player loops checked tracks and stays mounted while you browse. The music ships as static MP3s, including individual tracks and full-recording downloads. The `scripts/render-*.py` files regenerate them with Python, NumPy, and lameenc.
+
+**Last Light on the Ridge** uses mandolin recordings by Philharmonia musicians. The melody uses soft plucks, with individual strokes from stronger tremolos blended into some attacks. Two recorded tremolos play at the bridge cadences. Guitar and bass use the existing synthesized backing. The [Philharmonia sound sample license](https://philharmonia.co.uk/resources/sound-samples/) permits distribution in finished music. Keep the source archive outside the repository.
+
+To regenerate the MP3, download **Strings.zip** from the [Philharmonia sound samples page](https://philharmonia.co.uk/resources/sound-samples/). With Python 3.11 or later, run:
+
+```powershell
+python -m pip install numpy lameenc miniaudio==1.70
+python scripts/render-last-light-on-the-ridge.py "C:\path\to\Strings.zip"
+```
+
+The renderer also accepts the smaller `Strings/mandolin/mandolin.zip` from inside that archive. These tools are only needed to regenerate the recording. Vite and GitHub Pages serve the finished MP3 as a static file.
 
 ## Publish later with GitHub Pages
 
