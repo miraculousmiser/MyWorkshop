@@ -75,6 +75,8 @@ jobs:
 
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        # v4.0.0 uses the REST artifact list checked above. Later releases returned
+        # an empty list from the runner's artifact service for successful uploads.
+        uses: actions/deploy-pages@f33f41b675f0ab2dc5a6863c9a170fe83af3571e # v4.0.0
         with:
           artifact_name: ${{ env.PAGES_ARTIFACT }}
