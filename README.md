@@ -55,7 +55,9 @@ The main reusable pieces are:
 - `src/pages/RoomPage.tsx` — one modular template used by all four rooms
 - `src/styles.css` — the complete visual system and responsive rules
 
-For a playable entry, add its page route to `App.tsx` and set the entry's `playPath` in `src/content.ts`. The room card will show a play link in place of its placeholder note.
+For an interactive entry, add its page route to `App.tsx` and set the entry's `playPath` in `src/content.ts`. The room card will link to the entry.
+
+The Laboratory has three interactive models. Compounding Garden compares compounding with a fixed weekly change, Signals in a Small Market shows how price and neighbor choices shape purchases, and Pendulum of Attention models interruptions and recovery over a work session. The pages and model rules live in `src/laboratory/`.
 
 The Listening Room groups tracks from all four recordings on one page. The player loops checked tracks and stays mounted while you browse. The music ships as static MP3s, including individual tracks and full-recording downloads. The `scripts/render-*.py` files regenerate them with Python, NumPy, and lameenc.
 
@@ -85,8 +87,9 @@ The repository includes `.github/workflows/deploy.yml`, a GitHub Actions workflo
 
 ## Design notes
 
-The visual language is intentionally restrained: warm paper, dark ink, editorial serif type, fine rules, and quiet motion. It uses system fonts and CSS-drawn motifs, so there are no font downloads or image dependencies. Motion respects the operating system's reduced-motion preference.
+The After Hours theme uses midnight blue, warm apricot accents, and system typography. The homepage orbits are drawn in CSS. Motion respects the operating system's reduced-motion preference.
 
 ## Status
 
 Open the Arcade to play **Pocket Weather**, **Orbital Orchard**, or **Ledger Runner** locally.
+Open the Laboratory to try **Compounding Garden**, **Signals in a Small Market**, or **Pendulum of Attention**.

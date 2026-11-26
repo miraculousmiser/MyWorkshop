@@ -4,29 +4,43 @@
 }
 
 .listening-intro {
-  max-width: 48rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "trail emblem"
+    "title emblem"
+    "description emblem"
+    "actions emblem";
+  align-items: start;
+  column-gap: clamp(0.75rem, 4vw, 3rem);
   margin-bottom: clamp(1.75rem, 4vw, 3.25rem);
 }
 
+.listening-intro > .room-emblem { grid-area: emblem; }
+
 .listening-intro .breadcrumb {
+  grid-area: trail;
   margin-bottom: 1.15rem;
   font-size: 0.75rem;
 }
 
 .listening-intro h1 {
+  grid-area: title;
   margin: 0;
-  font: 500 clamp(3rem, 7vw, 6.5rem)/0.98 var(--serif);
+  font: 620 clamp(2.65rem, 7vw, 5.6rem)/1 var(--sans);
   letter-spacing: -0.055em;
 }
 
 .listening-intro > p:not(.breadcrumb) {
+  grid-area: description;
   max-width: 38rem;
   margin: 0.85rem 0 0;
   color: var(--muted);
-  font: 1.125rem/1.55 var(--serif);
+  font: 1.125rem/1.55 var(--sans);
 }
 
 .listening-intro__actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -40,6 +54,21 @@
   font: 0.875rem/1.4 var(--mono);
 }
 
+@media (max-width: 680px) {
+  .listening-intro {
+    grid-template-areas:
+      "trail trail"
+      "title emblem"
+      "description description"
+      "actions actions";
+  }
+
+  .listening-intro h1 {
+    align-self: center;
+    font-size: clamp(2rem, 8.6vw, 3.65rem);
+  }
+}
+
 .listening-catalog {
   display: grid;
   gap: 1.15rem;
@@ -48,11 +77,12 @@
 
 .listening-group {
   border: 1px solid var(--line);
-  background: var(--paper-bright);
+  border-radius: 0.8rem;
+  background: var(--surface);
 }
 
 .listening-group[data-linked="true"] {
-  border-top: 2px solid #526971;
+  border-top: 2px solid var(--sky);
 }
 
 .listening-group__header {
@@ -66,7 +96,7 @@
 
 .listening-group__header h2 {
   margin: 0;
-  font: 500 clamp(1.65rem, 3.5vw, 2.3rem)/1.12 var(--serif);
+  font: 500 clamp(1.65rem, 3.5vw, 2.3rem)/1.12 var(--sans);
   letter-spacing: -0.028em;
 }
 
@@ -74,12 +104,12 @@
   max-width: 36rem;
   margin: 0.4rem 0 0;
   color: var(--muted);
-  font: 1rem/1.5 var(--serif);
+  font: 1rem/1.5 var(--sans);
 }
 
 .listening-group__header a {
   align-self: start;
-  color: #294756;
+  color: var(--sky);
   font-size: 0.875rem;
   text-underline-offset: 0.2rem;
 }
@@ -95,9 +125,11 @@
 }
 
 .listening-tracks li[aria-current] {
-  background: #e2e9e5;
-  box-shadow: inset 3px 0 #41645a;
+  background: var(--surface-raised);
+  box-shadow: inset 3px 0 var(--accent);
 }
+
+.listening-tracks li:last-child { border-radius: 0 0 0.8rem 0.8rem; }
 
 .listening-track {
   display: grid;
@@ -120,12 +152,12 @@
   width: 1.125rem;
   height: 1.125rem;
   margin: 0;
-  accent-color: var(--forest);
+  accent-color: var(--accent);
 }
 
 .listening-track strong {
   display: block;
-  font: 500 1.05rem/1.3 var(--serif);
+  font: 500 1.05rem/1.3 var(--sans);
 }
 
 .listening-track small {
@@ -147,16 +179,17 @@
   min-height: 2.75rem;
   padding: 0.45rem 0.75rem;
   border: 1px solid var(--line);
+  border-radius: 0.4rem;
   color: var(--ink);
   background: transparent;
-  font: 0.95rem/1.25 var(--serif);
+  font: 0.95rem/1.25 var(--sans);
   cursor: pointer;
 }
 
 .listening-track__play:hover:not(:disabled),
 .listening-cues button:hover:not(:disabled) {
-  border-color: var(--forest);
-  background: var(--paper);
+  border-color: var(--accent);
+  background: var(--surface-raised);
 }
 
 .listening-page button:disabled,
@@ -193,23 +226,24 @@
   gap: 0.45rem 0.9rem;
   margin: 0 auto 0.7rem;
   padding: 0.65rem clamp(0.75rem, 2vw, 1.2rem);
-  border: 1px solid #324d50;
-  color: #f5ebda;
-  background: #233638;
-  box-shadow: 0 0.25rem 1rem #151b1f33;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: 0 0.4rem 1.6rem var(--shadow);
 }
 
 .listening-bar[hidden] { display: none; }
 
 .listening-bar__title a {
-  color: #c9ded5;
+  color: var(--sky);
   font-size: 0.8125rem;
   text-underline-offset: 0.17rem;
 }
 
 .listening-bar__title p {
   margin: 0.1rem 0 0;
-  font: 500 1.1rem/1.2 var(--serif);
+  font: 500 1.1rem/1.2 var(--sans);
 }
 
 .listening-bar audio {
@@ -226,25 +260,24 @@
 .listening-bar button {
   min-height: 2.5rem;
   padding-inline: 0.6rem;
-  border-color: #a8c0b687;
-  color: #f5ebda;
 }
 
 .listening-bar button:hover:not(:disabled) {
-  background: #3b5455;
+  border-color: var(--accent);
+  background: var(--surface-raised);
 }
 
 .listening-bar__state {
-  color: #c9ded5;
+  color: var(--muted);
   font: 0.8125rem/1.3 var(--mono);
 }
 
-.listening-bar__state[data-playing="true"] { color: #def3e3; }
+.listening-bar__state[data-playing="true"] { color: var(--accent); }
 
 .listening-bar__error {
   grid-column: 1 / -1;
   margin: 0;
-  color: #ffe0cc;
+  color: var(--danger);
   font-size: 0.875rem;
 }
 

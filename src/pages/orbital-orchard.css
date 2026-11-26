@@ -14,20 +14,21 @@
 
 .orchard-header h1 {
   margin: 0;
-  font: 500 clamp(2.75rem, 6.5vw, 5.9rem)/0.98 var(--serif);
+  font: 620 clamp(2.65rem, 7vw, 5.6rem)/1 var(--sans);
   letter-spacing: -0.055em;
 }
 
 .orchard-header > p:last-child {
   margin: 0.85rem 0 0;
   color: var(--muted);
-  font: 1.125rem/1.5 var(--serif);
+  font: 1.125rem/1.5 var(--sans);
 }
 
 .orchard-game {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(16rem, 18.5rem);
   border: 1px solid var(--line);
+  border-radius: 0.8rem;
   background: #101924;
 }
 
@@ -64,18 +65,18 @@
 .orchard-controls {
   padding: clamp(1rem, 2.4vw, 1.55rem);
   border-left: 1px solid var(--line);
-  background: var(--paper-bright);
+  background: var(--surface);
 }
 
 .orchard-controls h2 {
   margin: 0;
-  font: 500 1.8rem/1.1 var(--serif);
+  font: 500 1.8rem/1.1 var(--sans);
   letter-spacing: -0.035em;
 }
 
 .orchard-inventory {
   margin: 0.45rem 0 1.3rem;
-  color: var(--forest);
+  color: var(--accent);
   font: 0.875rem/1.4 var(--mono);
 }
 
@@ -92,7 +93,7 @@
 }
 
 .orchard-setting label span {
-  color: var(--forest);
+  color: var(--accent);
   font: 0.875rem/1.4 var(--mono);
 }
 
@@ -101,7 +102,7 @@
   width: 100%;
   height: 2rem;
   margin: 0.1rem 0 0;
-  accent-color: var(--forest);
+  accent-color: var(--accent);
   cursor: pointer;
 }
 
@@ -118,7 +119,7 @@
   width: 1.15rem;
   height: 1.15rem;
   margin: 0;
-  accent-color: var(--forest);
+  accent-color: var(--accent);
 }
 
 .orchard-forecast {
@@ -138,28 +139,29 @@
 .orchard-actions button {
   min-height: 2.75rem;
   padding: 0.52rem 0.8rem;
-  border: 1px solid var(--forest);
+  border: 1px solid var(--accent);
+  border-radius: 0.4rem;
   font-size: 0.875rem;
   font-weight: 650;
   cursor: pointer;
 }
 
 .orchard-launch {
-  color: var(--paper-bright);
-  background: var(--forest);
+  color: var(--accent-ink);
+  background: var(--accent);
 }
 
 .orchard-restart {
-  color: var(--forest);
+  color: var(--accent);
   background: transparent;
 }
 
 .orchard-launch:hover:not([aria-disabled="true"]) {
-  background: #243c33;
+  background: var(--accent-hover);
 }
 
 .orchard-restart:hover {
-  background: var(--paper);
+  background: var(--surface-raised);
 }
 
 .orchard-launch[aria-disabled="true"],
@@ -173,8 +175,8 @@
   margin: 0.95rem 0 0;
   padding-top: 0.65rem;
   border-top: 1px solid var(--line);
-  color: var(--forest);
-  font: 500 1rem/1.4 var(--serif);
+  color: var(--accent);
+  font: 500 1rem/1.4 var(--sans);
 }
 
 .orchard-notes {
@@ -212,7 +214,7 @@
   max-width: 27rem;
   margin: 0;
   color: var(--muted);
-  font: 1rem/1.5 var(--serif);
+  font: 1rem/1.5 var(--sans);
 }
 
 @media (max-width: 760px) {

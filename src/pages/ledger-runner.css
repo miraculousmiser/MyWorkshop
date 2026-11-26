@@ -14,7 +14,7 @@
 
 .runner-header h1 {
   margin: 0;
-  font: 500 clamp(2.75rem, 6.5vw, 5.9rem)/0.98 var(--serif);
+  font: 620 clamp(2.65rem, 7vw, 5.6rem)/1 var(--sans);
   letter-spacing: -0.055em;
 }
 
@@ -23,7 +23,7 @@
   max-width: 45rem;
   margin: 0.85rem 0 0;
   color: var(--muted);
-  font: 1.125rem/1.5 var(--serif);
+  font: 1.125rem/1.5 var(--sans);
 }
 
 .runner-game {
@@ -32,7 +32,8 @@
   max-width: 66rem;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: var(--paper-bright);
+  border-radius: 0.8rem;
+  background: var(--surface);
 }
 
 .runner-hud {
@@ -59,7 +60,7 @@
 
 .runner-hud dd {
   margin: 0;
-  font: 500 clamp(1.3rem, 3.4vw, 2.35rem)/1.12 var(--serif);
+  font: 500 clamp(1.3rem, 3.4vw, 2.35rem)/1.12 var(--sans);
   font-variant-numeric: tabular-nums;
 }
 
@@ -240,8 +241,8 @@
 }
 
 .runner-gate p { margin: 0; }
-.runner-gate__label { color: var(--forest); font: 0.875rem/1.35 var(--mono); font-variant-numeric: tabular-nums; }
-.runner-gate__name { padding: 0.2rem 0; font: 500 clamp(1.25rem, 2.3vw, 1.95rem)/1.15 var(--serif); }
+.runner-gate__label { color: var(--accent); font: 0.875rem/1.35 var(--mono); font-variant-numeric: tabular-nums; }
+.runner-gate__name { padding: 0.2rem 0; font: 500 clamp(1.25rem, 2.3vw, 1.95rem)/1.15 var(--sans); }
 .runner-gate__rule, .runner-hint { color: var(--muted); font-size: 0.875rem; line-height: 1.45; }
 
 .runner-actions {
@@ -253,7 +254,8 @@
 .runner-actions button {
   min-height: 2.8rem;
   padding: 0.48rem 0.85rem;
-  border: 1px solid var(--forest);
+  border: 1px solid var(--accent);
+  border-radius: 0.4rem;
   font-size: 0.875rem;
   font-weight: 650;
   cursor: pointer;
@@ -261,14 +263,14 @@
 
 .runner-primary {
   min-width: 7.1rem;
-  color: var(--paper-bright);
-  background: var(--forest);
+  color: var(--accent-ink);
+  background: var(--accent);
 }
 
-.runner-primary[aria-pressed="true"] { border-color: var(--oxblood); background: var(--oxblood); }
+.runner-primary[aria-pressed="true"] { border-color: var(--lavender); background: var(--lavender); }
 .runner-primary[aria-disabled="true"] { opacity: 0.68; cursor: default; }
-.runner-secondary { color: var(--forest); background: transparent; }
-.runner-secondary:hover { background: var(--paper); }
+.runner-secondary { color: var(--accent); background: transparent; }
+.runner-secondary:hover { background: var(--surface-raised); }
 
 .runner-hint { margin: 0.55rem 0 0; }
 
@@ -283,8 +285,8 @@
   margin: 0 clamp(0.85rem, 3.5vw, 2rem);
   padding: 0.62rem 0;
   border-top: 1px solid var(--line);
-  color: var(--forest);
-  font: 500 1rem/1.4 var(--serif);
+  color: var(--accent);
+  font: 500 1rem/1.4 var(--sans);
 }
 
 @media (max-width: 680px) {

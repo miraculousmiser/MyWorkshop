@@ -2,7 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader, type Route } from './components/SiteHeader'
 import { ListeningBar } from './components/ListeningBar'
-import { findRoom, ledgerRunnerPath, orbitalOrchardPath, pocketWeatherPath, rooms, type RoomId } from './content'
+import {
+  compoundingGardenPath, compoundingGardenTitle, findRoom, ledgerRunnerPath, orbitalOrchardPath,
+  pendulumOfAttentionPath, pendulumOfAttentionTitle, pocketWeatherPath, rooms, smallMarketPath, smallMarketTitle,
+  type RoomId,
+} from './content'
+import { CompoundingGarden } from './laboratory/CompoundingGarden'
+import { PendulumOfAttention } from './laboratory/PendulumOfAttention'
+import { SmallMarket } from './laboratory/SmallMarket'
 import { HomePage } from './pages/HomePage'
 import { LedgerRunnerPage } from './pages/LedgerRunnerPage'
 import { ListeningPage } from './pages/ListeningPage'
@@ -16,10 +23,13 @@ const entryPages = {
   [pocketWeatherPath]: { title: 'Pocket Weather', Page: PocketWeatherPage },
   [orbitalOrchardPath]: { title: 'Orbital Orchard', Page: OrbitalOrchardPage },
   [ledgerRunnerPath]: { title: 'Ledger Runner', Page: LedgerRunnerPage },
+  [compoundingGardenPath]: { title: compoundingGardenTitle, Page: CompoundingGarden },
+  [smallMarketPath]: { title: smallMarketTitle, Page: SmallMarket },
+  [pendulumOfAttentionPath]: { title: pendulumOfAttentionTitle, Page: PendulumOfAttention },
 }
 const validRoutes = ['/', ...rooms.map(({ id }) => `/${id}`), ...Object.keys(entryPages), ...recordings.map(({ path }) => path)]
 
-function isGamePath(route: Route): route is keyof typeof entryPages {
+function isEntryPath(route: Route): route is keyof typeof entryPages {
   return Object.hasOwn(entryPages, route)
 }
 
@@ -31,7 +41,7 @@ function readRoute(): Route {
 function App() {
   const [route, setRoute] = useState<Route>(readRoute)
   const previousRoute = useRef(route)
-  const EntryPage = isGamePath(route) ? entryPages[route].Page : undefined
+  const EntryPage = isEntryPath(route) ? entryPages[route].Page : undefined
   const linkedGroup = recordings.find(({ path }) => path === route)
   const isListening = route === '/listening' || !!linkedGroup
   const player = useListeningPlayer()
@@ -53,13 +63,13 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const roomName = isListening ? 'Listening Room' : isGamePath(route) ? entryPages[route].title
+    const roomName = isListening ? 'Listening Room' : isEntryPath(route) ? entryPages[route].title
       : route === '/' ? '' : findRoom(route.slice(1) as RoomId).name
     document.title = roomName ? `${roomName} · The Workshop` : 'The Workshop · A personal playground'
     const previous = previousRoute.current
     const cameFromListening = previous === '/listening' || recordings.some(({ path }) => path === previous)
     window.scrollTo({ top: 0, behavior: 'instant' })
-    if (previous !== route && (isListening || cameFromListening || isGamePath(route) || isGamePath(previous))) {
+    if (previous !== route && (isListening || cameFromListening || isEntryPath(route) || isEntryPath(previous))) {
       document.getElementById('main-content')?.focus({ preventScroll: true })
     }
     previousRoute.current = route

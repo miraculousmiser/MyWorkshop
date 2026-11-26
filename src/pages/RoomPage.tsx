@@ -1,4 +1,4 @@
-import { RoomGlyph } from '../components/RoomGlyph'
+import { RoomEmblem } from '../components/RoomEmblem'
 import { rooms, type Room } from '../content'
 
 type RoomPageProps = {
@@ -8,11 +8,14 @@ type RoomPageProps = {
 export function RoomPage({ room }: RoomPageProps) {
   const roomIndex = rooms.findIndex((item) => item.id === room.id)
   const nextRoom = rooms[(roomIndex + 1) % rooms.length]
+  const isLaboratory = room.id === 'laboratory'
   const hasPlayableEntry = room.entries.some((entry) => entry.playPath)
   const allPlayable = hasPlayableEntry && room.entries.every((entry) => entry.playPath)
-  const collectionTitle = allPlayable ? 'Play in the Arcade.'
+  const collectionTitle = isLaboratory ? 'Experiments'
+    : allPlayable ? 'Play in the Arcade.'
     : hasPlayableEntry ? 'Games and sketches.' : 'Three things taking shape.'
-  const collectionNote = allPlayable ? 'Try a landscape toy, a gravity puzzle, or a timed delivery.'
+  const collectionNote = isLaboratory ? 'Choose a model and see what changes when you adjust its controls.'
+    : allPlayable ? 'Try a landscape toy, a gravity puzzle, or a timed delivery.'
     : hasPlayableEntry ? 'Play a game or see what else is taking shape in the Arcade.'
     : 'Sample content for layout and direction; none of these entries is published yet.'
 
@@ -25,10 +28,7 @@ export function RoomPage({ room }: RoomPageProps) {
           <h1 id="room-title">{room.name}</h1>
           <p>{room.introduction}</p>
         </div>
-        <div className="room-hero__mark">
-          <span className="room-hero__number">{room.index}</span>
-          <RoomGlyph room={room.id} large />
-        </div>
+        <RoomEmblem room={room.id} />
       </section>
 
       <section className="section collection" aria-labelledby="collection-title">
@@ -41,11 +41,10 @@ export function RoomPage({ room }: RoomPageProps) {
         </div>
 
         <div className="entry-grid">
-          {room.entries.map((entry, index) => (
+          {room.entries.map((entry) => (
             <article className="entry-card" key={entry.title}>
               <div className="entry-card__meta">
-                <span>{entry.playPath ? 'Playable' : 'Placeholder'}</span>
-                <small>{String(index + 1).padStart(2, '0')}</small>
+                <span>{entry.playPath ? (isLaboratory ? 'Interactive' : 'Playable') : 'Placeholder'}</span>
               </div>
               <div className="entry-card__copy">
                 <p>{entry.kind} · {entry.year}</p>
@@ -54,7 +53,7 @@ export function RoomPage({ room }: RoomPageProps) {
               </div>
               <footer>
                 {entry.playPath
-                  ? <a className="text-button" href={`#${entry.playPath}`}>Play {entry.title}</a>
+                  ? <a className="text-button" href={`#${entry.playPath}`}>{isLaboratory ? 'Open' : 'Play'} {entry.title}</a>
                   : <span>{entry.note}</span>}
               </footer>
             </article>
@@ -74,7 +73,7 @@ export function RoomPage({ room }: RoomPageProps) {
         <span>Continue through the index</span>
         <a href={`#/${nextRoom.id}`}>
           <small>Room {nextRoom.index}</small>
-          {nextRoom.name} <b aria-hidden="true">→</b>
+          {nextRoom.name}
         </a>
       </nav>
     </main>

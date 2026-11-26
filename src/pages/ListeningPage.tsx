@@ -1,3 +1,4 @@
+import { RoomEmblem } from '../components/RoomEmblem'
 import { audioUrl, recordings } from '../recordings'
 import type { ListeningPlayer } from '../useListeningPlayer'
 import './listening.css'
@@ -17,6 +18,7 @@ export function ListeningPage({ player, linkedGroup }: { player: ListeningPlayer
           </button>
           <p aria-live="polite">{selectedCount === 1 ? '1 track selected' : `${selectedCount} tracks selected`}</p>
         </div>
+        <RoomEmblem room="listening" />
       </header>
 
       <div className="listening-catalog">

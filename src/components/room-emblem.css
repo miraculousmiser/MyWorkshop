@@ -1,0 +1,266 @@
+.room-emblem {
+  --emblem-color: var(--accent);
+  --emblem-fill: color-mix(in srgb, var(--surface) 87%, var(--emblem-color));
+  --emblem-light: color-mix(in srgb, var(--emblem-color) 80%, var(--ink));
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  width: clamp(9.5rem, 21vw, 15rem);
+  aspect-ratio: 1;
+  justify-self: end;
+  align-self: center;
+  color: var(--emblem-color);
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(circle at 48% 42%, var(--emblem-fill), var(--background) 71%);
+}
+
+.room-emblem--library { --emblem-color: var(--lavender); }
+.room-emblem--listening { --emblem-color: var(--sky); }
+.room-emblem--laboratory { --emblem-color: var(--mint); }
+
+.room-emblem::before {
+  position: absolute;
+  inset: 7%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from -1deg, currentColor 0 2deg, transparent 2deg 15deg);
+  mask-image: radial-gradient(farthest-side, transparent calc(100% - 0.22rem), #000 calc(100% - 0.2rem));
+  opacity: 0.38;
+  content: "";
+}
+
+.room-emblem__orbit {
+  position: absolute;
+  inset: 30% 4%;
+  border: 1px solid color-mix(in srgb, currentColor 43%, transparent);
+  border-radius: 50%;
+  transform: rotate(-34deg);
+}
+
+.room-emblem__orbit::after {
+  position: absolute;
+  top: 11%;
+  left: 13%;
+  width: max(3px, 3cqw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0.55rem currentColor;
+  content: "";
+}
+
+.room-emblem__spark {
+  position: absolute;
+  top: 20%;
+  right: 23%;
+  width: 8%;
+  aspect-ratio: 1;
+  background:
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat,
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat;
+}
+
+.room-emblem__spark--small {
+  inset: auto auto 22% 18%;
+  width: 4%;
+  opacity: 0.6;
+}
+
+.emblem-joystick,
+.emblem-book,
+.emblem-turntable,
+.emblem-flask {
+  position: absolute;
+  inset: 23%;
+  filter: drop-shadow(0 0.16rem 0.25rem var(--background));
+}
+
+.emblem-joystick { transform: rotate(-10deg); }
+
+.emblem-joystick__deck {
+  position: absolute;
+  inset: 57% 6% 16%;
+  border: 1px solid var(--emblem-light);
+  border-radius: 0.3rem;
+  background: var(--emblem-fill);
+  box-shadow: 0 0.26rem 0 -0.06rem var(--background), 0 0.26rem 0 currentColor;
+  transform: skewX(-15deg);
+}
+
+.emblem-joystick__deck::before,
+.emblem-joystick__deck::after {
+  position: absolute;
+  top: 28%;
+  right: 10%;
+  width: 14%;
+  aspect-ratio: 1.4;
+  border-radius: 50%;
+  background: currentColor;
+  content: "";
+}
+
+.emblem-joystick__deck::after { top: 49%; right: 29%; opacity: 0.62; }
+
+.emblem-joystick__stick {
+  position: absolute;
+  inset: 33% 60% 26% 34%;
+  border-radius: 0.2rem;
+  background: linear-gradient(90deg, currentColor, var(--emblem-light));
+}
+
+.emblem-joystick__grip {
+  position: absolute;
+  top: 15%;
+  left: 23%;
+  width: 28%;
+  aspect-ratio: 1;
+  border: 1px solid var(--emblem-light);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 27%, var(--emblem-light), currentColor 46%, var(--emblem-fill));
+}
+
+.emblem-book__page {
+  position: absolute;
+  top: 23%;
+  right: 50%;
+  width: 45%;
+  height: 53%;
+  border: 1px solid currentColor;
+  border-radius: 0.45rem 0.22rem 0.12rem 0.22rem;
+  background: var(--emblem-fill);
+  box-shadow: 0 0.23rem 0 -0.08rem var(--background), 0 0.23rem 0 currentColor;
+  transform: skewY(11deg);
+}
+
+.emblem-book__page:nth-child(2) {
+  inset-inline: 50% auto;
+  border-radius: 0.22rem 0.45rem 0.22rem 0.12rem;
+  transform: skewY(-11deg);
+}
+
+.emblem-book__page::after {
+  position: absolute;
+  inset: 24% 19% 27%;
+  background: repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, currentColor 66%, transparent) 0 1px,
+    transparent 1px 32%
+  );
+  content: "";
+}
+
+.emblem-book__bookmark {
+  position: absolute;
+  top: 20%;
+  left: 74%;
+  width: 11%;
+  height: 32%;
+  background: var(--emblem-light);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 76%, 0 100%);
+  transform: skewY(-11deg);
+}
+
+.emblem-turntable { transform: rotate(-12deg); }
+
+.emblem-turntable__deck {
+  position: absolute;
+  inset: 17% 2%;
+  border: 1px solid var(--emblem-light);
+  border-radius: 0.35rem;
+  background: var(--emblem-fill);
+  box-shadow: 0 0.22rem 0 -0.08rem var(--background), 0 0.22rem 0 currentColor;
+}
+
+.emblem-turntable__record {
+  position: absolute;
+  top: 23%;
+  left: 9%;
+  width: 54%;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    var(--background) 0 12%,
+    color-mix(in srgb, var(--background) 73%, currentColor) 13% 15%
+  );
+}
+
+.emblem-turntable__record::after {
+  position: absolute;
+  inset: 35%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--background) 0 16%, var(--emblem-light) 18% 100%);
+  content: "";
+}
+
+.emblem-turntable__arm {
+  position: absolute;
+  top: 29%;
+  right: 16%;
+  width: max(1px, 0.9cqw);
+  height: 41%;
+  border-radius: 1px;
+  background: var(--emblem-light);
+  transform: rotate(27deg);
+  transform-origin: top center;
+}
+
+.emblem-turntable__arm::before,
+.emblem-turntable__arm::after {
+  position: absolute;
+  left: 50%;
+  background: var(--emblem-light);
+  transform: translateX(-50%);
+  content: "";
+}
+
+.emblem-turntable__arm::before {
+  top: -10%;
+  width: max(3px, 3.2cqw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.emblem-turntable__arm::after {
+  bottom: -9%;
+  width: max(2px, 1.9cqw);
+  height: 23%;
+  border-radius: 1px;
+}
+
+.emblem-flask { transform: rotate(12deg); }
+
+.emblem-flask__glass {
+  position: absolute;
+  inset: 8% 9% 6%;
+  clip-path: polygon(27% 0, 73% 0, 73% 9%, 66% 9%, 66% 43%, 96% 82%, 96% 91%, 87% 100%, 13% 100%, 4% 91%, 4% 82%, 34% 43%, 34% 9%, 27% 9%);
+  background: var(--emblem-light);
+}
+
+.emblem-flask__glass::before {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(38% 8%, 62% 8%, 62% 45%, 91% 84%, 91% 89%, 85% 95%, 15% 95%, 9% 89%, 9% 84%, 38% 45%);
+  background: linear-gradient(162deg, var(--emblem-fill) 61%, var(--emblem-color) 61%);
+  content: "";
+}
+
+.emblem-flask__bubble {
+  position: absolute;
+  top: 59%;
+  left: 38%;
+  width: max(3px, 4cqw);
+  aspect-ratio: 1;
+  border: 1px solid var(--emblem-light);
+  border-radius: 50%;
+}
+
+.emblem-flask__bubble:last-child { top: 47%; left: 51%; width: max(2px, 2.3cqw); }
+
+@media (max-width: 680px) {
+  .room-emblem {
+    grid-area: emblem;
+    width: clamp(4.45rem, 19vw, 7.4rem);
+  }
+}

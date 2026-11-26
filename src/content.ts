@@ -3,6 +3,12 @@ export type RoomId = 'arcade' | 'library' | 'listening' | 'laboratory'
 export const pocketWeatherPath = '/arcade/pocket-weather'
 export const orbitalOrchardPath = '/arcade/orbital-orchard'
 export const ledgerRunnerPath = '/arcade/ledger-runner'
+export const compoundingGardenPath = '/laboratory/compounding-garden'
+export const compoundingGardenTitle = 'Compounding Garden'
+export const smallMarketPath = '/laboratory/signals-in-a-small-market'
+export const smallMarketTitle = 'Signals in a Small Market'
+export const pendulumOfAttentionPath = '/laboratory/pendulum-of-attention'
+export const pendulumOfAttentionTitle = 'Pendulum of Attention'
 export const nightTrainsPath = '/listening/night-trains'
 export const nightTrainsDescription = 'A sequence imagined for late work, long windows, and stations that arrive before their names do.'
 export const workingSlowlyPath = '/listening/three-songs-for-working-slowly'
@@ -17,6 +23,7 @@ export const summerPorchTitle = 'Summer Porch Sessions'
 export const summerPorchDescription = 'A summer-night string jam with soft picking and room for the instruments to trade phrases.'
 export type EntryPath = typeof pocketWeatherPath | typeof orbitalOrchardPath | typeof ledgerRunnerPath
   | typeof nightTrainsPath | typeof workingSlowlyPath | typeof lastLightPath | typeof summerPorchPath
+  | typeof compoundingGardenPath | typeof smallMarketPath | typeof pendulumOfAttentionPath
 
 export type Entry = {
   title: string
@@ -164,29 +171,32 @@ export const rooms: Room[] = [
     eyebrow: 'Models, instruments & odd little systems',
     summary: 'Interactive experiments for seeing an idea move, bend, accumulate, or fall apart.',
     introduction:
-      'The laboratory will hold small explainers and playful models: things easier to understand by touching than by reading one more paragraph.',
-    promise: 'Every experiment will explain its controls, its assumptions, and what it cannot claim to prove.',
+      'Three small models for trying out ideas. Grow a garden, see how neighborhoods shop, or change the rhythm of a work session.',
+    promise: 'Each experiment explains its rules and assumptions so you can see what drives the result.',
     entries: [
       {
-        title: 'Compounding Garden',
+        title: compoundingGardenTitle,
         kind: 'Visual model',
         year: 'Prototype',
-        description: 'Tune time, growth, and decay in a small visual system that behaves a little like a garden.',
+        description: 'Adjust growth, decay, and time to compare compounding with a fixed weekly change.',
         note: 'A gentler way to develop intuition for exponential change.',
+        playPath: compoundingGardenPath,
       },
       {
-        title: 'Signals in a Small Market',
+        title: smallMarketTitle,
         kind: 'Toy economy',
         year: 'Prototype',
-        description: 'Watch local choices ripple through a tiny market whose participants know only their neighbors.',
+        description: 'Change two prices and watch choices ripple between households on a neighborhood grid.',
         note: 'A model for asking better questions, not predicting the world.',
+        playPath: smallMarketPath,
       },
       {
-        title: 'Pendulum of Attention',
+        title: pendulumOfAttentionTitle,
         kind: 'Interactive study',
         year: 'Prototype',
-        description: 'Adjust rhythm, interruption, and recovery to see how a day’s attention changes shape.',
+        description: 'Vary the timing and strength of interruptions and see how a work session changes.',
         note: 'A small instrument for thinking about focus without quantifying a person.',
+        playPath: pendulumOfAttentionPath,
       },
     ],
   },
